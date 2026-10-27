@@ -3,3 +3,5 @@ bin/
 *.pdb
 .env
 *.exe
+.venv/
+__pycache__/
