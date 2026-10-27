@@ -1,6 +1,6 @@
-﻿# Keyboard Lock: lock your laptop keyboard while you clean it (Windows)
+# Keyboard Lock: lock your Windows keyboard for cleaning, cats, kids and presentations
 
-Keyboard Lock is a tiny, free Windows tray app that switches your keyboard off with one shortcut, **Ctrl+Alt+K**, so you can wipe the keys without typing gibberish, closing windows or triggering shortcuts. Press the same shortcut again to get your keyboard back. Your mouse and trackpad keep working the whole time.
+Keyboard Lock is a tiny, free Windows tray app that switches your keyboard off with one shortcut, **Ctrl+Alt+K**, so you can wipe the keys, or leave the laptop with a cat, a toddler or a presentation running, without typing gibberish, closing windows or triggering shortcuts. Press the same shortcut again to get your keyboard back. Your mouse and trackpad keep working the whole time.
 
 It is a single C# file (about 140 lines). It has no installer, no network access, no settings files and no dependencies beyond the .NET Framework that ships with Windows 10 and Windows 11.
 
@@ -8,7 +8,8 @@ It is a single C# file (about 140 lines). It has no installer, no network access
 
 - **One-shortcut toggle.** Ctrl+Alt+K locks and unlocks the keyboard. You can also double-click the tray icon or use its right-click menu.
 - **Mouse stays active.** The mouse and trackpad are never blocked, so you can always unlock from the tray icon.
-- **10-minute auto-unlock.** If you forget, the keyboard unlocks itself after 10 minutes, so you can never be locked out for good.
+- **Auto-unlock safety net.** If you forget, the keyboard unlocks itself after 10 minutes by default. Pick 1, 5, 10, 30 or 60 minutes from the tray menu, or start with `--minutes 45` (1 to 240).
+- **Click-to-unlock banner.** While locked, a small orange banner stays on top of your screen. Click it to unlock. It never steals focus from what you are doing.
 - **No stuck keys.** On lock, Ctrl, Alt, Shift and Windows are released so apps do not think a modifier is still held down.
 - **Clear status.** The tray icon turns into a warning sign and shows a notification while the keyboard is locked.
 - **Private by design.** The keyboard hook only decides whether to pass a key through or swallow it. Keystrokes are never stored, logged or sent anywhere. Read the [source](KeyboardLock.cs) to confirm.
@@ -24,7 +25,18 @@ It is a single C# file (about 140 lines). It has no installer, no network access
 | --- | --- |
 | Lock or unlock | Ctrl+Alt+K, double-click the tray icon, or tray menu |
 | Quit | Tray menu, then Exit |
-| Automatic unlock | After 10 minutes (change `AUTO_UNLOCK_MINUTES` in the source) |
+| Automatic unlock | After 10 minutes by default; tray menu, Auto-unlock after, or `KeyboardLock.exe --minutes 30` |
+| Unlock with the mouse | Click the orange banner, or the tray icon |
+
+## More Ways to Use It
+
+Cleaning is the classic use, but any time you want key presses ignored while the mouse keeps working:
+
+- Keep a cat or toddler from typing into a long download, render or video call.
+- Present or watch a film without an elbow hitting Space, Esc or a shortcut.
+- Read a long document or recipe with messy hands.
+- Ignore a laptop keyboard that is broken or ghost-typing while you work with the mouse and on-screen keyboard.
+- Run a demo or kiosk-style screen where people can only click.
 
 ## Build from Source
 
