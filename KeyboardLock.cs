@@ -33,7 +33,8 @@ class KeyboardLock : ApplicationContext
     static HookProc _proc;          // kept alive so the GC cannot collect the callback
     static IntPtr _hook = IntPtr.Zero;
     static bool _locked = false;
-    static bool _ctrl = false, _alt = false;
+    static bool _lCtrl, _rCtrl, _lAlt, _rAlt;   // per-side, so releasing one Ctrl/Alt does not hide the other
+    static bool _toggleHeld = false;            // true while K is held, so key-repeat cannot re-toggle
     static NotifyIcon _tray;
     static Timer _failsafe;
     static MenuItem _toggleItem;
@@ -88,10 +89,17 @@ class KeyboardLock : ApplicationContext
 
         // Track modifiers ourselves - we may be swallowing them, so the OS state is unreliable.
         int vk = (int)info.vkCode;
-        if (vk == VK_CONTROL || vk == 0xA2 || vk == 0xA3) { if (down) _ctrl = true; else if (up) _ctrl = false; }
-        if (vk == VK_MENU || vk == 0xA4 || vk == 0xA5) { if (down) _alt = true; else if (up) _alt = false; }
+        if (vk == VK_CONTROL || vk == 0xA2) _lCtrl = down ? true : (up ? false : _lCtrl);
+        if (vk == 0xA3) _rCtrl = down ? true : (up ? false : _rCtrl);
+        if (vk == VK_MENU || vk == 0xA4) _lAlt = down ? true : (up ? false : _lAlt);
+        if (vk == 0xA5) _rAlt = down ? true : (up ? false : _rAlt);
 
-        if (down && vk == TOGGLE_VK && _ctrl && _alt) { Toggle(); return (IntPtr)1; }
+        if (vk == TOGGLE_VK && up) _toggleHeld = false;
+        if (down && vk == TOGGLE_VK && (_lCtrl || _rCtrl) && (_lAlt || _rAlt))
+        {
+            if (!_toggleHeld) { _toggleHeld = true; Toggle(); }
+            return (IntPtr)1;
+        }
 
         if (_locked) return (IntPtr)1; // swallow every physical key while locked
 
@@ -108,7 +116,7 @@ class KeyboardLock : ApplicationContext
         if (_locked)
         {
             ReleaseModifiers(); // stop apps thinking Ctrl/Alt are still held
-            _ctrl = false; _alt = false;
+            _lCtrl = _rCtrl = _lAlt = _rAlt = false;
             _failsafe.Stop(); _failsafe.Start();
             Balloon("Keyboard LOCKED", "Safe to clean. Ctrl+Alt+K, or the tray icon, unlocks it. It also unlocks itself after "
                     + AUTO_UNLOCK_MINUTES + " minutes.");
