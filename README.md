@@ -1,4 +1,21 @@
-# Keyboard Lock: lock your keyboard for cleaning, cats, kids and presentations
+<div align="center">
+
+# 🔒 Keyboard Lock
+
+**Lock your keyboard for cleaning, cats, kids and presentations.**
+One shortcut, **Ctrl+Alt+K**, switches the keyboard off and back on. Your mouse and trackpad keep working. Tiny, free tray app.
+
+[![License](https://img.shields.io/github/license/ddivyanshsharmaa/keyboard-lock?style=flat-square)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/ddivyanshsharmaa/keyboard-lock?style=flat-square)](https://github.com/ddivyanshsharmaa/keyboard-lock/commits)
+[![Stars](https://img.shields.io/github/stars/ddivyanshsharmaa/keyboard-lock?style=flat-square)](https://github.com/ddivyanshsharmaa/keyboard-lock/stargazers)
+![Platform](https://img.shields.io/badge/Windows-stable-blue?style=flat-square)
+![macOS and Linux](https://img.shields.io/badge/macOS%20%7C%20Linux-beta-lightgrey?style=flat-square)
+
+<img src="docs/social-preview.png" alt="Keyboard Lock: Lock your keyboard for cleaning, cats, kids and presentations." width="760">
+
+[Features](#features) · [How to use](#how-to-use) · [Build from source](#build-from-source) · [FAQ](#frequently-asked-questions)
+
+</div>
 
 Keyboard Lock is a tiny, free Windows tray app that switches your keyboard off with one shortcut, **Ctrl+Alt+K**, so you can wipe the keys, or leave the laptop with a cat, a toddler or a presentation running, without typing gibberish, closing windows or triggering shortcuts. Press the same shortcut again to get your keyboard back. Your mouse and trackpad keep working the whole time.
 
@@ -225,3 +242,7 @@ permission, event routing or GUI behaviour. Platform bridges install only throug
 ## License
 
 [MIT](LICENSE). Free to use, change and share.
+
+---
+
+If this saved you time, a ⭐ on the repo helps other people find it.
